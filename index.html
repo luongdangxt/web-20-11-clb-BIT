@@ -888,6 +888,9 @@
         position: relative;
         width: min(720px, calc(100vw - 60px));
         min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         background: linear-gradient(145deg, rgba(255, 249, 252, 0.95), rgba(255, 223, 237, 0.92) 55%, rgba(244, 213, 255, 0.9));
         border-radius: 36px;
         z-index: 100;
@@ -908,8 +911,9 @@
 
       .formLetter .wrapperLetter {
         position: relative;
-        width: 85%;
+        width: min(640px, 100%);
         min-height: 100%;
+        margin: 0 auto;
         border-radius: 28px;
         display: flex;
         flex-direction: column;
