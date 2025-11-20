@@ -166,19 +166,19 @@ body.portrait #landscape-warning {
 
 #dark-overlay {
   position: fixed;
-  z-index: 5;
+  z-index: 20;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 10, 30, 0.92);
+  background: rgba(4, 4, 16, 0.8);
   pointer-events: none;
   transition: opacity 0.6s;
-  opacity: 1;
+  opacity: 0.85;
 }
 
 body.intro-started #dark-overlay {
-  opacity: 0;
+  opacity: 0.45;
   transition: opacity 1.2s;
 }
 
@@ -210,7 +210,7 @@ body.portrait #container canvas {
 }
 
 body:not(.landscape-warning-active):not(.portrait) #container canvas {
-  filter: blur(0) brightness(1) grayscale(0);
+  filter: blur(0) brightness(0.68) contrast(1.08) grayscale(0);
   opacity: 1;
   transition: filter 1.2s, opacity 1.2s cubic-bezier(0.4, 2, 0.6, 1);
 }
@@ -221,7 +221,7 @@ body.landscape-warning-active #landscape-warning {
 }
 
 body:not(.landscape-warning-active) #container canvas {
-  filter: blur(0) brightness(1) grayscale(0);
+  filter: blur(0) brightness(0.68) contrast(1.08) grayscale(0);
   opacity: 1;
   transition: filter 1.2s, opacity 1.2s cubic-bezier(0.4, 2, 0.6, 1);
 }
