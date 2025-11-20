@@ -489,13 +489,13 @@ for (let group = 0; group < numGroups; group++) {
     const materialNear = new THREE.PointsMaterial({
       size: nearSize,
       map: neonTexture,
-      transparent: true,
-      opacity: 0.95,
+      transparent: false,
+      opacity: 1,
       alphaTest: 0.05,
       depthWrite: false,
       depthTest: true,
       sizeAttenuation: true,
-      blending: THREE.AdditiveBlending,
+      blending: THREE.NormalBlending,
       vertexColors: true,
     });
 
@@ -503,12 +503,12 @@ for (let group = 0; group < numGroups; group++) {
     const materialFar = new THREE.PointsMaterial({
       size: farSize,
       map: neonTexture,
-      transparent: true,
-      opacity: 0.6,
+      transparent: false,
+      opacity: 1,
       alphaTest: 0.05,
       depthWrite: false,
       sizeAttenuation: true,
-      blending: THREE.AdditiveBlending,
+      blending: THREE.NormalBlending,
       vertexColors: true,
     });
 
@@ -516,16 +516,8 @@ for (let group = 0; group < numGroups; group++) {
     pointsObject.position.set(cx, cy, cz); // Dat lai ve vi tri ban dau trong scene
 
     const glowColor = glowPalette[group % glowPalette.length];
-    const glowSprite = createGlowMaterial(glowColor, 256, 0.06);
-    const baseGlowScale = 10 + Math.random() * 3;
-    glowSprite.scale.set(baseGlowScale, baseGlowScale, 1);
-    glowSprite.position.set(cx, cy, cz);
-    glowSprite.material.depthWrite = false;
-    glowSprite.material.depthTest = false;
-    glowSprite.material.opacity = 0.06;
-    glowSprite.userData.baseScale = baseGlowScale;
-    glowSprite.renderOrder = -5;
-    scene.add(glowSprite);
+    const glowSprite = createGlowMaterial(glowColor, 256, 0.0);
+    glowSprite.visible = false;
 
     // Luu tru cac trang thai de chuyen doi sau nay
     pointsObject.userData.materialNear = materialNear;
