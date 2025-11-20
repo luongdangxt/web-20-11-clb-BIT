@@ -345,8 +345,8 @@ function createNeonTexture(image, size) {
     offsetX + drawWidth,
     offsetY + drawHeight
   );
-  borderGradient.addColorStop(0, "#ff8ad4");
-  borderGradient.addColorStop(0.5, "#ffd89c");
+  borderGradient.addColorStop(0, "#8cc2f2");
+  borderGradient.addColorStop(0.5, "#f2d48f");
   borderGradient.addColorStop(1, "#7af6ff");
   ctx.lineWidth = size * 0.03;
   ctx.strokeStyle = borderGradient;
@@ -947,7 +947,7 @@ function createTextRings() {
     ctx.strokeText(fullText, 0, textureHeight * 0.82); // căn dòng thấp hơn
 
     // Hiệu ứng glow cho phần fill
-    ctx.shadowColor = "#ffb3de";
+    ctx.shadowColor = "#9cbbe0";
     ctx.shadowBlur = 24;
     ctx.fillStyle = "#fff";
     ctx.fillText(fullText, 0, textureHeight * 0.84);
@@ -1423,7 +1423,7 @@ function createHintText() {
   context.font = `bold ${fontSize}px Arial, sans-serif`;
   context.textAlign = "center";
   context.textBaseline = "middle";
-  context.shadowColor = "#ffb3de";
+  context.shadowColor = "#9cbbe0";
   context.shadowBlur = 5;
   context.lineWidth = 2;
   context.strokeStyle = "rgba(255, 200, 220, 0.8)";
@@ -1633,3 +1633,4 @@ window.addEventListener("orientationchange", () => {
   // Thêm độ trễ để trình duyệt cập nhật kích thước chính xác
   setTimeout(checkOrientation, 200);
 });
+
