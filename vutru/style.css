@@ -3,7 +3,18 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  position: relative;
   filter: hue-rotate(-50deg) saturate(0.7);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 18;
 }
 
 * {
@@ -16,12 +27,21 @@ body {
 #container {
   width: 100vw;
   height: 100vh;
-  /* hoặc: height: calc(var(--vh, 1vh) * 100); */
-  background: radial-gradient(circle at center, #000010 0%, #000000 100%);
+  background: radial-gradient(circle at center, #02020a 0%, #000000 100%);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 10;
+  overflow: hidden;
+}
+
+#container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.92) 65%);
+  z-index: 15;
+  pointer-events: none;
 }
 
 canvas {
@@ -210,7 +230,7 @@ body.portrait #container canvas {
 }
 
 body:not(.landscape-warning-active):not(.portrait) #container canvas {
-  filter: blur(0) brightness(0.68) contrast(1.08) grayscale(0);
+  filter: blur(0) brightness(0.35) contrast(1.25) saturate(0.75);
   opacity: 1;
   transition: filter 1.2s, opacity 1.2s cubic-bezier(0.4, 2, 0.6, 1);
 }
@@ -221,7 +241,7 @@ body.landscape-warning-active #landscape-warning {
 }
 
 body:not(.landscape-warning-active) #container canvas {
-  filter: blur(0) brightness(0.68) contrast(1.08) grayscale(0);
+  filter: blur(0) brightness(0.35) contrast(1.25) saturate(0.75);
   opacity: 1;
   transition: filter 1.2s, opacity 1.2s cubic-bezier(0.4, 2, 0.6, 1);
 }
@@ -327,6 +347,7 @@ body.intro-started #info {
     transform: translate(-50%, 0);
   }
 }
+
 
 
 
