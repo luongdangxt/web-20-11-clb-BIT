@@ -112,6 +112,13 @@ const heartImages = [
   ...defaultHeartImages,
 ];
 
+const glowPalette = [
+  "rgba(255, 136, 214, 0.55)",
+  "rgba(122, 246, 255, 0.5)",
+  "rgba(255, 214, 126, 0.55)",
+  "rgba(197, 148, 255, 0.55)",
+];
+
 const textureLoader = new THREE.TextureLoader();
 const numGroups = heartImages.length;
 
@@ -250,55 +257,132 @@ function createNeonTexture(image, size) {
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = size;
   const ctx = canvas.getContext("2d");
+
   const aspectRatio = image.width / image.height;
-  let drawWidth, drawHeight, offsetX, offsetY;
+  let drawWidth = size;
+  let drawHeight = size;
   if (aspectRatio > 1) {
-    drawWidth = size;
     drawHeight = size / aspectRatio;
-    offsetX = 0;
-    offsetY = (size - drawHeight) / 2;
   } else {
-    drawHeight = size;
     drawWidth = size * aspectRatio;
-    offsetX = (size - drawWidth) / 2;
-    offsetY = 0;
   }
+  const offsetX = (size - drawWidth) / 2;
+  const offsetY = (size - drawHeight) / 2;
   ctx.clearRect(0, 0, size, size);
-  const cornerRadius = size * 0.1;
+  const cornerRadius = size * 0.18;
+
+  const drawRoundedRect = () => {
+    ctx.beginPath();
+    ctx.moveTo(offsetX + cornerRadius, offsetY);
+    ctx.lineTo(offsetX + drawWidth - cornerRadius, offsetY);
+    ctx.quadraticCurveTo(
+      offsetX + drawWidth,
+      offsetY,
+      offsetX + drawWidth,
+      offsetY + cornerRadius
+    );
+    ctx.lineTo(offsetX + drawWidth, offsetY + drawHeight - cornerRadius);
+    ctx.quadraticCurveTo(
+      offsetX + drawWidth,
+      offsetY + drawHeight,
+      offsetX + drawWidth - cornerRadius,
+      offsetY + drawHeight
+    );
+    ctx.lineTo(offsetX + cornerRadius, offsetY + drawHeight);
+    ctx.quadraticCurveTo(
+      offsetX,
+      offsetY + drawHeight,
+      offsetX,
+      offsetY + drawHeight - cornerRadius
+    );
+    ctx.lineTo(offsetX, offsetY + cornerRadius);
+    ctx.quadraticCurveTo(offsetX, offsetY, offsetX + cornerRadius, offsetY);
+    ctx.closePath();
+  };
+
+  const glowGradient = ctx.createRadialGradient(
+    size / 2,
+    size / 2,
+    size * 0.1,
+    size / 2,
+    size / 2,
+    size * 0.85
+  );
+  glowGradient.addColorStop(0, "rgba(255,255,255,0.35)");
+  glowGradient.addColorStop(0.45, "rgba(255,120,200,0.25)");
+  glowGradient.addColorStop(1, "rgba(6,10,30,0)");
+  ctx.fillStyle = glowGradient;
+  ctx.fillRect(0, 0, size, size);
+
   ctx.save();
-  ctx.beginPath();
-  ctx.moveTo(offsetX + cornerRadius, offsetY);
-  ctx.lineTo(offsetX + drawWidth - cornerRadius, offsetY);
-  ctx.arcTo(
-    offsetX + drawWidth,
+  drawRoundedRect();
+  const panelGradient = ctx.createLinearGradient(
+    offsetX,
     offsetY,
     offsetX + drawWidth,
-    offsetY + cornerRadius,
-    cornerRadius
+    offsetY + drawHeight
   );
-  ctx.lineTo(offsetX + drawWidth, offsetY + drawHeight - cornerRadius);
-  ctx.arcTo(
-    offsetX + drawWidth,
-    offsetY + drawHeight,
-    offsetX + drawWidth - cornerRadius,
-    offsetY + drawHeight,
-    cornerRadius
-  );
-  ctx.lineTo(offsetX + cornerRadius, offsetY + drawHeight);
-  ctx.arcTo(
-    offsetX,
-    offsetY + drawHeight,
-    offsetX,
-    offsetY + drawHeight - cornerRadius,
-    cornerRadius
-  );
-  ctx.lineTo(offsetX, offsetY + cornerRadius);
-  ctx.arcTo(offsetX, offsetY, offsetX + cornerRadius, offsetY, cornerRadius);
-  ctx.closePath();
+  panelGradient.addColorStop(0, "rgba(18, 15, 38, 0.95)");
+  panelGradient.addColorStop(1, "rgba(70, 18, 92, 0.9)");
+  ctx.fillStyle = panelGradient;
+  ctx.shadowColor = "rgba(255,110,200,0.55)";
+  ctx.shadowBlur = size * 0.08;
+  ctx.fill();
+  ctx.restore();
+
+  ctx.save();
+  drawRoundedRect();
   ctx.clip();
+  ctx.globalAlpha = 0.92;
   ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
   ctx.restore();
-  return new THREE.CanvasTexture(canvas);
+
+  ctx.save();
+  drawRoundedRect();
+  const borderGradient = ctx.createLinearGradient(
+    offsetX,
+    offsetY,
+    offsetX + drawWidth,
+    offsetY + drawHeight
+  );
+  borderGradient.addColorStop(0, "#ff8ad4");
+  borderGradient.addColorStop(0.5, "#ffd89c");
+  borderGradient.addColorStop(1, "#7af6ff");
+  ctx.lineWidth = size * 0.03;
+  ctx.strokeStyle = borderGradient;
+  ctx.stroke();
+  ctx.globalAlpha = 0.45;
+  ctx.lineWidth = size * 0.008;
+  ctx.strokeStyle = "rgba(255,255,255,0.85)";
+  ctx.stroke();
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(offsetX, offsetY);
+  ctx.lineTo(offsetX + drawWidth, offsetY);
+  ctx.lineTo(offsetX + drawWidth, offsetY + drawHeight * 0.35);
+  ctx.lineTo(offsetX, offsetY + drawHeight * 0.35);
+  ctx.closePath();
+  const highlightGradient = ctx.createLinearGradient(
+    offsetX,
+    offsetY,
+    offsetX,
+    offsetY + drawHeight * 0.35
+  );
+  highlightGradient.addColorStop(0, "rgba(255,255,255,0.35)");
+  highlightGradient.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = highlightGradient;
+  ctx.fill();
+  ctx.restore();
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.anisotropy = Math.min(
+    renderer.capabilities.getMaxAnisotropy(),
+    8
+  );
+  texture.needsUpdate = true;
+  return texture;
 }
 
 // ---- TẠO CÁC NHÓM ĐIỂM HÌNH TRÁI TIM ----
@@ -397,42 +481,62 @@ for (let group = 0; group < numGroups; group++) {
   img.crossOrigin = "Anonymous";
   img.src = heartImages[group];
   img.onload = () => {
-    const neonTexture = createNeonTexture(img, 256);
+    const neonTexture = createNeonTexture(img, 384);
+    const nearSize = 3.4 + Math.random() * 0.8;
+    const farSize = Math.max(nearSize - 0.9, 2.4);
 
-    // Material khi ở gần
+    // Material khi o gan
     const materialNear = new THREE.PointsMaterial({
-      size: 1.8,
+      size: nearSize,
       map: neonTexture,
-      transparent: false,
-      alphaTest: 0.2,
-      depthWrite: true,
+      transparent: true,
+      opacity: 0.95,
+      alphaTest: 0.05,
+      depthWrite: false,
       depthTest: true,
-      blending: THREE.NormalBlending,
+      sizeAttenuation: true,
+      blending: THREE.AdditiveBlending,
       vertexColors: true,
     });
 
-    // Material khi ở xa
+    // Material khi o xa
     const materialFar = new THREE.PointsMaterial({
-      size: 1.8,
+      size: farSize,
       map: neonTexture,
       transparent: true,
-      alphaTest: 0.2,
+      opacity: 0.6,
+      alphaTest: 0.05,
       depthWrite: false,
+      sizeAttenuation: true,
       blending: THREE.AdditiveBlending,
       vertexColors: true,
     });
 
     const pointsObject = new THREE.Points(groupGeometryFar, materialFar);
-    pointsObject.position.set(cx, cy, cz); // Đặt lại vị trí ban đầu trong scene
+    pointsObject.position.set(cx, cy, cz); // Dat lai ve vi tri ban dau trong scene
 
-    // Lưu trữ các trạng thái để chuyển đổi sau này
+    const glowColor = glowPalette[group % glowPalette.length];
+    const glowSprite = createGlowMaterial(glowColor, 256, 0.3);
+    const baseGlowScale = 20 + Math.random() * 8;
+    glowSprite.scale.set(baseGlowScale, baseGlowScale, 1);
+    glowSprite.position.set(cx, cy, cz);
+    glowSprite.material.depthWrite = false;
+    glowSprite.material.depthTest = false;
+    glowSprite.material.opacity = 0.45;
+    glowSprite.userData.baseScale = baseGlowScale;
+    glowSprite.renderOrder = -5;
+    scene.add(glowSprite);
+
+    // Luu tru cac trang thai de chuyen doi sau nay
     pointsObject.userData.materialNear = materialNear;
     pointsObject.userData.geometryNear = groupGeometryNear;
     pointsObject.userData.materialFar = materialFar;
     pointsObject.userData.geometryFar = groupGeometryFar;
+    pointsObject.userData.glowSprite = glowSprite;
 
     scene.add(pointsObject);
   };
+
 }
 
 // ---- ÁNH SÁNG MÔI TRƯỜNG ----
@@ -1272,6 +1376,25 @@ function animate() {
           obj.material = obj.userData.materialFar;
           obj.geometry = obj.userData.geometryFar;
         }
+      }
+      const glowSprite = obj.userData.glowSprite;
+      if (glowSprite && glowSprite.material) {
+        const baseScale =
+          (glowSprite.userData && glowSprite.userData.baseScale) ||
+          glowSprite.scale.x;
+        const targetScale = baseScale * (isClose ? 1.35 : 1);
+        const newScale = THREE.MathUtils.lerp(
+          glowSprite.scale.x,
+          targetScale,
+          0.08
+        );
+        glowSprite.scale.set(newScale, newScale, 1);
+        const targetOpacity = isClose ? 0.85 : 0.4;
+        glowSprite.material.opacity = THREE.MathUtils.lerp(
+          glowSprite.material.opacity,
+          targetOpacity,
+          0.08
+        );
       }
     }
   });

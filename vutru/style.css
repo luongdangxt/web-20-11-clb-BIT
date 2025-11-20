@@ -251,3 +251,78 @@ body:not(.landscape-warning-active) #container canvas {
     transform: rotate(-18deg);
   }
 }
+
+#info {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: min(320px, 80vw);
+  padding: 1.2rem 1.5rem;
+  border-radius: 20px;
+  font-family: "Manrope", "Poppins", sans-serif;
+  background: linear-gradient(
+    145deg,
+    rgba(12, 10, 32, 0.85),
+    rgba(35, 14, 52, 0.75)
+  );
+  border: 1px solid rgba(255, 138, 197, 0.35);
+  box-shadow: 0 20px 55px rgba(7, 0, 30, 0.65);
+  backdrop-filter: blur(12px);
+  color: #fef7ff;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+body.intro-started #info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#info h2 {
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+#info .info-tagline {
+  font-size: 0.95rem;
+  color: #f3d9ff;
+  line-height: 1.4;
+}
+
+#info .info-pill {
+  margin-top: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.85rem;
+  color: #ffe6ff;
+}
+
+#info small {
+  margin-top: 0.45rem;
+  font-size: 0.78rem;
+  color: #d4f0ff;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 768px) {
+  #info {
+    left: 50%;
+    right: auto;
+    bottom: 16px;
+    width: calc(100vw - 40px);
+    transform: translate(-50%, 20px);
+  }
+  body.intro-started #info {
+    transform: translate(-50%, 0);
+  }
+}
