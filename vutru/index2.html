@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galaxy with Zoom Effect</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.152.2/build/three.module.js",
+          "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.152.2/examples/jsm/controls/OrbitControls.js",
+          "three/examples/jsm/loaders/FontLoader.js": "https://unpkg.com/three@0.152.2/examples/jsm/loaders/FontLoader.js",
+          "three/examples/jsm/geometries/TextGeometry.js": "https://unpkg.com/three@0.152.2/examples/jsm/geometries/TextGeometry.js"
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <audio id="backgroundMusic" loop>
+      <source src="music/music1.mp3" type="audio/mpeg" />
+      <source src="music/music1.mp3" type="audio/ogg" />
+    </audio>
+
+    <div id="container"></div>
+    <div id="landscape-warning">
+      <div class="warning-content">
+        <div class="rotate-icon"></div>
+        <h1>Stellar Bloom</h1>
+        <h1>Tinh Cầu</h1>
+        <div class="stars-bg"></div>
+      </div>
+    </div>
+    <div id="dark-overlay"></div>
+    <div id="info"></div>
+    <script type="module" src="script.js"></script>
+
+    <!-- THÊM SCRIPT QUẢN LÝ NHẠC -->
+    <script>
+      // QUẢN LÝ NHẠC NỀN - TIẾP TỤC TỪ TRANG TRƯỚC
+      document.addEventListener("DOMContentLoaded", function () {
+        const backgroundMusic = document.getElementById("backgroundMusic");
+
+        // Kiểm tra trạng thái nhạc đã lưu
+        const savedTime = localStorage.getItem("musicCurrentTime");
+        const isPlaying = localStorage.getItem("musicIsPlaying") === "true";
+
+        // Khôi phục thời gian nếu có
+        if (savedTime) {
+          backgroundMusic.currentTime = parseFloat(savedTime);
+        }
+
+        backgroundMusic.volume = 0.3;
+
+        // Hàm tiếp tục nhạc
+        function continueMusic() {
+          if (isPlaying && backgroundMusic.paused) {
+            backgroundMusic.play().catch((e) => {
+              console.log("Chờ tương tác người dùng...");
+            });
+          }
+
+          // Xóa sự kiện sau khi click đầu tiên
+          document.removeEventListener("click", continueMusic);
+          document.removeEventListener("touchstart", continueMusic);
+        }
+
+        // Thêm sự kiện cho lần click đầu tiên
+        document.addEventListener("click", continueMusic);
+        document.addEventListener("touchstart", continueMusic);
+
+        // Thử phát tự động sau 1 giây
+        setTimeout(function () {
+          if (isPlaying && backgroundMusic.paused) {
+            backgroundMusic.play().catch((e) => {
+              console.log("Tự động phát bị chặn, chờ người dùng tương tác...");
+            });
+          }
+        }, 1000);
+
+        // Lưu trạng thái khi rời trang
+        window.addEventListener("beforeunload", function () {
+          localStorage.setItem("musicCurrentTime", backgroundMusic.currentTime);
+          localStorage.setItem("musicIsPlaying", !backgroundMusic.paused);
+        });
+
+        // Cập nhật thời gian nhạc liên tục
+        setInterval(function () {
+          if (!backgroundMusic.paused) {
+            localStorage.setItem(
+              "musicCurrentTime",
+              backgroundMusic.currentTime
+            );
+            localStorage.setItem("musicIsPlaying", true);
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
