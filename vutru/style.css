@@ -3,7 +3,6 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  
 }
 
 * {
@@ -16,8 +15,8 @@ body {
 #container {
   width: 100vw;
   height: 100vh;
-  /* hoặc: height: calc(var(--vh, 1vh) * 100); */
-  background: radial-gradient(circle at center, #1a1f33 0%, #0a0f1c 100%);
+  /* hoặc: height: calc(var(--vh, 1vh) * 100); */
+  background: radial-gradient(circle at center, #000010 0%, #000000 100%);
   position: fixed;
   top: 0;
   left: 0;
@@ -153,7 +152,7 @@ body.portrait #landscape-warning {
   padding: 1rem 2.5rem;
   border-radius: 2rem;
   border: none;
-  background: linear-gradient(90deg, #8cc2f2, #a259c7, #00eaff);
+  background: linear-gradient(90deg, #ffb6e6, #a259c7, #00eaff);
   color: #fff;
   box-shadow: 0 0 24px #fff6, 0 0 8px #00eaff;
   cursor: pointer;
@@ -161,26 +160,25 @@ body.portrait #landscape-warning {
 }
 
 #start-btn:hover {
-  background: linear-gradient(90deg, #00eaff, #a259c7, #8cc2f2);
+  background: linear-gradient(90deg, #00eaff, #a259c7, #ffb6e6);
 }
 
 #dark-overlay {
   position: fixed;
-  z-index: 20;
+  z-index: 5;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: transparent;
+  background: rgba(10, 10, 30, 0.92);
   pointer-events: none;
-  transition: none;
-  opacity: 0;
-  display: none !important;
+  transition: opacity 0.6s;
+  opacity: 1;
 }
 
 body.intro-started #dark-overlay {
   opacity: 0;
-  transition: none;
+  transition: opacity 1.2s;
 }
 
 body:not(.intro-started):not(.portrait) #info,
@@ -211,7 +209,7 @@ body.portrait #container canvas {
 }
 
 body:not(.landscape-warning-active):not(.portrait) #container canvas {
-  filter: blur(0) brightness(1) contrast(1) saturate(1);
+  filter: blur(0) brightness(1) grayscale(0);
   opacity: 1;
   transition: filter 1.2s, opacity 1.2s cubic-bezier(0.4, 2, 0.6, 1);
 }
@@ -222,7 +220,7 @@ body.landscape-warning-active #landscape-warning {
 }
 
 body:not(.landscape-warning-active) #container canvas {
-  filter: blur(0) brightness(1) contrast(1) saturate(1);
+  filter: blur(0) brightness(1) grayscale(0);
   opacity: 1;
   transition: filter 1.2s, opacity 1.2s cubic-bezier(0.4, 2, 0.6, 1);
 }
@@ -306,7 +304,7 @@ body.intro-started #info {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 0.85rem;
-  color: #e9f2ff;
+  color: #ffe6ff;
 }
 
 #info small {
@@ -328,7 +326,3 @@ body.intro-started #info {
     transform: translate(-50%, 0);
   }
 }
-
-
-
-
