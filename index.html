@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,10 +15,10 @@
         --letter-scale: 1.28;
         --letter-scale-active: 1.33;
         --envelope-scale: 1;
-        --primary-pink: #ff7eb3;
-        --primary-purple: #a077ff;
-        --primary-yellow: #ffd86f;
-        --primary-cyan: #7af6ff;
+        --primary-pink: #6c89d9;
+        --primary-purple: #5b79c6;
+        --primary-yellow: #f2d48f;
+        --primary-cyan: #7fc8c9;
       }
 
       * {
@@ -38,9 +38,9 @@
         min-height: 100vh;
         margin: 0;
         padding: clamp(18px, 4vw, 36px);
-        background: radial-gradient(circle at 20% 20%, #ffe0f4, transparent 45%),
+        background: radial-gradient(circle at 20% 20%, #eef3f9, transparent 45%),
             radial-gradient(circle at 80% 0%, #dfe0ff, transparent 38%),
-            linear-gradient(135deg, #ffecf4, #e0f7ff 55%, #ffe9d0);
+            linear-gradient(135deg, #f3f7fb, #e0f7ff 55%, #f1ead8);
         font-family: "Georgia", serif;
         overflow-x: hidden;
         overflow-y: auto;
@@ -106,7 +106,7 @@
         position: absolute;
         inset: 0;
         background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.7), transparent 45%),
-          radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.4), transparent 55%);
+          radial-gradient(circle at 80% 80%, rgba(235,245,255,0.45), transparent 55%);
         opacity: 0.5;
         pointer-events: none;
         z-index: -1;
@@ -121,16 +121,14 @@
       }
 
       .background-ornaments,
-      .sparkle-layer,
-      .floating-hearts-bg {
+      .sparkle-layer {
         position: fixed;
         inset: 0;
         pointer-events: none;
         z-index: 1;
       }
 
-      .background-ornaments span,
-      .floating-hearts-bg span {
+      .background-ornaments span {
         position: absolute;
         display: block;
       }
@@ -226,68 +224,6 @@
         left: 35%;
       }
 
-      .floating-hearts-bg span {
-        width: 20px;
-        height: 20px;
-        background: linear-gradient(135deg, rgba(255, 126, 179, 0.8), rgba(255, 209, 150, 0.8));
-        transform: rotate(-45deg);
-        border-radius: 5px;
-        box-shadow: 0 0 15px rgba(255, 126, 179, 0.4);
-        animation: floatHeartBg 12s ease-in-out infinite;
-        opacity: 0.4;
-      }
-
-      .floating-hearts-bg span::before,
-      .floating-hearts-bg span::after {
-        content: "";
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: inherit;
-        top: -10px;
-        left: 0;
-      }
-
-      .floating-hearts-bg span::after {
-        top: 0;
-        left: 10px;
-      }
-
-      .floating-hearts-bg span:nth-child(1) {
-        left: 8%;
-        top: 55%;
-        animation-delay: 0.8s;
-        transform: scale(0.75) rotate(-45deg);
-      }
-
-      .floating-hearts-bg span:nth-child(2) {
-        left: 15%;
-        top: 20%;
-        animation-delay: 2s;
-        transform: scale(0.8) rotate(-45deg);
-      }
-
-      .floating-hearts-bg span:nth-child(3) {
-        right: 20%;
-        top: 30%;
-        animation-delay: 4s;
-        transform: scale(1.1) rotate(-45deg);
-      }
-
-      .floating-hearts-bg span:nth-child(4) {
-        left: 30%;
-        bottom: 10%;
-        animation-delay: 1s;
-        transform: scale(0.9) rotate(-45deg);
-      }
-
-      .floating-hearts-bg span:nth-child(5) {
-        right: 8%;
-        bottom: 22%;
-        animation-delay: 3s;
-        transform: scale(1.2) rotate(-45deg);
-      }
 
       /* Animation styles */
       .animate-element {
@@ -339,20 +275,6 @@
         }
       }
 
-      @keyframes floatHeartBg {
-        0% {
-          transform: translateY(0) scale(1) rotate(-45deg);
-          opacity: 0.35;
-        }
-        50% {
-          transform: translateY(-120px) scale(1.2) rotate(-45deg);
-          opacity: 0.7;
-        }
-        100% {
-          transform: translateY(0) scale(1) rotate(-45deg);
-          opacity: 0.35;
-        }
-      }
 
       /* Staggered animation delays */
       .delay-1 {
@@ -407,7 +329,7 @@
         transform: scale(var(--envelope-scale));
         transform-origin: center;
         z-index: 10;
-        background: radial-gradient(circle at top left, #fff8f3, #ffe0eb 60%, #ffd2da);
+        background: radial-gradient(circle at top left, #f7f9fc, #e5eff2 60%, #dce7ea);
         border-radius: 20px;
         padding: clamp(18px, 3.5vw, 30px);
         max-width: min(980px, 96vw);
@@ -437,9 +359,9 @@
         width: 90px;
         height: 90px;
         border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, #fff8fb 0%, #ffb4d9 55%, #ff6ba5 100%);
+        background: radial-gradient(circle at 30% 30%, #f8fafc 0%, #cbd9e7 55%, #8aa9c6 100%);
         box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
-        filter: drop-shadow(0 6px 15px rgba(255, 95, 155, 0.25));
+        filter: drop-shadow(0 6px 15px rgba(140,160,180,0.25));
         animation: bloomPetals 7s ease-in-out infinite;
       }
 
@@ -449,7 +371,7 @@
         position: absolute;
         inset: 12px;
         border-radius: 50%;
-        background: radial-gradient(circle, #fff8fb 0%, #ffc1de 65%, rgba(255, 95, 155, 0.3));
+        background: radial-gradient(circle, #f8fafc 0%, #d3dde8 65%, rgba(140,160,180,0.25));
       }
 
       .flower::after {
@@ -668,7 +590,7 @@
         position: relative;
         width: 360px;
         height: 240px;
-        background: linear-gradient(135deg, #ff9aa2, #ffb3c6 60%, #ffd4e8);
+        background: linear-gradient(135deg, #cfae90, #d3c1b0 60%, #d9e2e6);
         border-radius: 0;
         box-shadow: 0 30px 45px rgba(255, 126, 179, 0.35);
         border: 1px solid rgba(255, 255, 255, 0.3);
@@ -681,7 +603,7 @@
         height: 200px;
         top: -200px;
         left: 0;
-        background: linear-gradient(180deg, #ffdfe7 0%, #f5a4b4 95%);
+        background: linear-gradient(180deg, #e7eded 0%, #c7b3a2 95%);
         clip-path: polygon(50% 30%, 100% 100%, 0% 100%);
         border-radius: 28px 28px 0 0;
         box-shadow: inset 0 8px 18px rgba(255, 255, 255, 0.6);
@@ -689,7 +611,7 @@
       }
 
       .envelope:before {
-        background: linear-gradient(145deg, #ffb5d3, #ff7eb3);
+        background: linear-gradient(145deg, #cbd9e7, #6c89d9);
         content: "";
         position: absolute;
         width: 280px;
@@ -703,13 +625,13 @@
 
       .card {
         position: absolute;
-        background: linear-gradient(145deg, #fff8fb, #ffe0ee);
+        background: linear-gradient(145deg, #f8fafc, #e7eff4);
         width: 320px;
         height: 210px;
         top: -12px;
         left: 20px;
         border-radius: 22px;
-        box-shadow: -10px -12px 60px rgba(255, 126, 179, 0.5);
+        box-shadow: -10px -12px 60px rgba(150,170,190,0.35);
         transition: top 0.5s ease, transform 0.5s ease;
         cursor: pointer;
         border: 1px solid rgba(255, 143, 178, 0.4);
@@ -740,116 +662,6 @@
         text-shadow: 0 4px 10px rgba(255, 255, 255, 0.8);
       }
 
-      .heart {
-        background: linear-gradient(135deg, #ff5f8f, #ffd86f);
-        display: inline-block;
-        height: 44px;
-        margin: 0 10px;
-        position: absolute;
-        top: 150px;
-        left: 50%;
-        transform: translateX(-50%) rotate(-45deg);
-        width: 44px;
-        border-radius: 8px;
-        box-shadow: 0 12px 25px rgba(255, 111, 150, 0.45);
-      }
-
-      .heart:before,
-      .heart:after {
-        content: "";
-        background: inherit;
-        border-radius: 50%;
-        height: 44px;
-        position: absolute;
-        width: 44px;
-      }
-
-      .heart:before {
-        top: -22px;
-        left: 0;
-      }
-
-      .heart:after {
-        left: 22px;
-        top: 0;
-      }
-
-      .hearts {
-        position: absolute;
-        top: -15px;
-        left: 0;
-        width: 100%;
-        height: 220px;
-        pointer-events: none;
-      }
-
-      .one, .two, .three, .four, .five {
-        background: linear-gradient(135deg, rgba(255, 126, 179, 0.95), rgba(255, 216, 111, 0.85));
-        display: inline-block;
-        height: 16px;
-        margin: 0 10px;
-        position: absolute;
-        transform: rotate(-45deg);
-        width: 16px;
-        top: 110px;
-        border-radius: 6px;
-        box-shadow: 0 0 18px rgba(255, 126, 179, 0.5);
-      }
-
-      .one:before, .one:after, .two:before, .two:after, .three:before, .three:after, .four:before, .four:after, .five:before, .five:after {
-        content: "";
-        background: inherit;
-        border-radius: 50%;
-        height: 16px;
-        position: absolute;
-        width: 16px;
-      }
-
-      .one:before, .two:before, .three:before, .four:before, .five:before {
-        top: -8px;
-        left: 0;
-      }
-
-      .one:after, .two:after, .three:after, .four:after, .five:after {
-        left: 8px;
-        top: 0;
-      }
-
-      .one {
-        left: 40px;
-        animation: heart 1.5s ease-out infinite;
-      }
-
-      .two {
-        left: 130px;
-        animation: heart 2.1s ease-out infinite;
-      }
-
-      .three {
-        left: 220px;
-        animation: heart 1.8s ease-out infinite;
-      }
-
-      .four {
-        left: 300px;
-        animation: heart 2.5s ease-out infinite;
-      }
-
-      .five {
-        left: 360px;
-        animation: heart 2.8s ease-out infinite;
-      }
-
-      @keyframes heart {
-        0% {
-          transform: translateY(0) rotate(-45deg) scale(0.5);
-          opacity: 0.95;
-        }
-        100% {
-          transform: translateY(-200px) rotate(-45deg) scale(1.5);
-          opacity: 0;
-        }
-      }
 
       .front {
         position: absolute;
@@ -865,7 +677,7 @@
       .front:before {
         position: absolute;
         content: "";
-        border-left: 362px solid #ffd0dd;
+        border-left: 362px solid #d9e2e6;
         border-top: 250px solid transparent;
         top: -250px;
         width: 0;
@@ -899,7 +711,7 @@
         position: fixed;
         inset: 0;
         z-index: 1000;
-        background: radial-gradient(circle at 20% 20%, rgba(255, 211, 231, 0.3), rgba(18, 7, 26, 0.92));
+        background: radial-gradient(circle at 20% 20%, rgba(208,223,238,0.28), rgba(9,19,38,0.85));
         backdrop-filter: blur(6px);
         display: none;
         overflow: auto;
@@ -1015,63 +827,7 @@
         right: 40px;
       }
 
-      @keyframes driftHeart {
-        0%, 100% {
-          transform: translateY(0) scale(0.95);
-          opacity: 0.8;
-        }
-        50% {
-          transform: translateY(-10px) scale(1.05);
-          opacity: 1;
-        }
-      }
 
-      .formLetter .heartLetter {
-        position: absolute;
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        background: rgba(255, 235, 235, 0.85);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-        box-shadow: 0 12px 25px rgba(255, 111, 150, 0.35);
-        animation: driftHeart 6s ease-in-out infinite;
-      }
-
-      .heartLetter .heartLetterItem {
-        position: relative;
-        width: 12px;
-        height: 12px;
-        transform: rotate(45deg);
-        background: linear-gradient(135deg, #ff5f8f, #ffd3e9);
-        box-shadow: 0 6px 12px rgba(255, 95, 143, 0.4);
-      }
-
-      .heartLetter:first-child {
-        right: 20px;
-        top: 24px;
-        animation-delay: 0s;
-      }
-
-      .heartLetter:nth-child(2) {
-        left: 20px;
-        bottom: 24px;
-        animation-delay: 0.8s;
-      }
-
-      .heartLetterItem::before, .heartLetterItem::after {
-        position: absolute;
-        content: '';
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: inherit;
-      }
-
-      .heartLetterItem::before { top: -50%; }
-      .heartLetterItem::after { left: -50%; }
 
       .wrapperLetter {
         position: relative;
@@ -1082,7 +838,7 @@
         top: 18px;
         left: 50%;
         transform: translateX(-50%);
-        background: linear-gradient(120deg, #ff7cae, #ffc997);
+        background: linear-gradient(120deg, #86a6c3, #e2d6b8);
         color: #fff;
         padding: 6px 18px;
         border-radius: 999px;
@@ -1099,31 +855,6 @@
         50% { transform: translate(-50%, -6px); }
       }
 
-      .corner-heart {
-        position: absolute;
-        width: 16px;
-        height: 16px;
-        background: #ff7aa7;
-        transform: rotate(45deg);
-        border-radius: 4px;
-        box-shadow: 0 6px 12px rgba(255, 122, 167, 0.4);
-      }
-
-      .corner-heart::before,
-      .corner-heart::after {
-        content: "";
-        position: absolute;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: inherit;
-      }
-
-      .corner-heart::before { top: -8px; left: 0; }
-      .corner-heart::after { left: 8px; top: 0; }
-
-      .corner-heart--tl { top: 28px; left: 28px; animation: floatBadge 5s ease-in-out infinite; }
-      .corner-heart--br { bottom: 28px; right: 28px; animation: floatBadge 6s ease-in-out infinite; }
 
       .textLetter {
         width: 100%;
@@ -1143,7 +874,7 @@
         align-items: center;
         justify-content: center;
         margin: 6px 0 4px;
-        background: linear-gradient(90deg, #ff4f8b, #ffa76f);
+        background: linear-gradient(90deg, #6c89d9, #d8b48a);
         -webkit-background-clip: text;
         color: transparent;
         letter-spacing: 1px;
@@ -1151,9 +882,8 @@
       }
 
       .textLetter h2::before {
-        content: "❤";
         font-size: 18px;
-        color: #ff6cab;
+        color: #7fc8c9;
         margin-right: 8px;
       }
 
@@ -1243,7 +973,7 @@
         width: 46px;
         height: 46px;
         border-radius: 50%;
-        background: radial-gradient(circle, #ffe9f1, #ff86b3);
+        background: radial-gradient(circle, #e9f2f5, #a8b7c8);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1325,7 +1055,7 @@
     filter: brightness(1.2);
 }
 
-/* Hi?u ?ng ph�t s�ng */
+/* Hi?u ?ng ph?t s?ng */
 @keyframes glow {
     from {
         box-shadow: 0 0 15px rgba(255, 182, 193, 0.6), 0 0 25px rgba(255, 105, 180, 0.4);
@@ -1335,7 +1065,7 @@
     }
 }
 
-/* Hi?u ?ng nh?p nh�y */
+/* Hi?u ?ng nh?p nh?y */
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -1364,7 +1094,7 @@
     }
 }
 
-/* Th�m hi?u ?ng particles khi hover */
+/* Th?m hi?u ?ng particles khi hover */
 .next-icon::before {
     content: '';
     position: absolute;
@@ -1425,14 +1155,6 @@
         text-align: center;
       }
 
-      .heartAnimation {
-        margin: 10px 0;
-      }
-
-      .heartAnimation img {
-        width: 50px;
-        height: 50px;
-      }
 
       @media (max-width: 900px) {
         body {
@@ -1553,7 +1275,17 @@
           width: 100%;
         }
       }
-    </style>
+          /* Gi?m h?ng chung c�c kh?i n?n/ho? ti?t */
+      .container,
+      .background-ornaments,
+      .envelope-container,
+      .envelope,
+      .top-flap,
+      .card,
+      .formLetter,
+      .wrapperLetter {
+        filter: hue-rotate(-50deg) saturate(0.7);
+      }</style>
   </head>
   <body>
     <div class="background-ornaments">
@@ -1565,13 +1297,6 @@
       <span></span>
       <span></span>
       <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="floating-hearts-bg">
       <span></span>
       <span></span>
       <span></span>
@@ -1634,7 +1359,7 @@
 
           <!-- Flower gradients -->
           <radialGradient id="pinkFlowerCenter" cx="30%" cy="30%" r="70%">
-            <stop offset="0%" stop-color="#ffcdd2" />
+            <stop offset="0%" stop-color="#d9e6ef" />
             <stop offset="70%" stop-color="#f48fb1" />
             <stop offset="100%" stop-color="#e91e63" />
           </radialGradient>
@@ -1646,7 +1371,7 @@
             x2="100%"
             y2="100%"
           >
-            <stop offset="0%" stop-color="#ffebee" />
+            <stop offset="0%" stop-color="#eef3f7" />
             <stop offset="50%" stop-color="#f8bbd9" />
             <stop offset="100%" stop-color="#f48fb1" />
           </linearGradient>
@@ -2516,7 +2241,7 @@
 
             <!-- Flower center -->
             <circle cx="0" cy="0" r="8" fill="url(#yellowFlowerCenter)" />
-            <circle cx="0" cy="0" r="4" fill="#ff8a65" />
+            <circle cx="0" cy="0" r="4" fill="#cfae90" />
 
             <!-- Detailed stamens -->
             <line
@@ -2524,7 +2249,7 @@
               y1="-2.5"
               x2="-5"
               y2="-7"
-              stroke="#ff8a65"
+              stroke="#cfae90"
               stroke-width="1"
             />
             <line
@@ -2532,7 +2257,7 @@
               y1="-2.5"
               x2="5"
               y2="-7"
-              stroke="#ff8a65"
+              stroke="#cfae90"
               stroke-width="1"
             />
             <line
@@ -2540,7 +2265,7 @@
               y1="2.5"
               x2="-5"
               y2="7"
-              stroke="#ff8a65"
+              stroke="#cfae90"
               stroke-width="1"
             />
             <line
@@ -2548,15 +2273,15 @@
               y1="2.5"
               x2="5"
               y2="7"
-              stroke="#ff8a65"
+              stroke="#cfae90"
               stroke-width="1"
             />
 
             <!-- Pollen dots -->
-            <circle cx="-5" cy="-7" r="1.2" fill="#ff8a65" />
-            <circle cx="5" cy="-7" r="1.2" fill="#ff8a65" />
-            <circle cx="-5" cy="7" r="1.2" fill="#ff8a65" />
-            <circle cx="5" cy="7" r="1.2" fill="#ff8a65" />
+            <circle cx="-5" cy="-7" r="1.2" fill="#cfae90" />
+            <circle cx="5" cy="-7" r="1.2" fill="#cfae90" />
+            <circle cx="-5" cy="7" r="1.2" fill="#cfae90" />
+            <circle cx="5" cy="7" r="1.2" fill="#cfae90" />
           </g>
 
           <!-- Enhanced White flower on right vine curve -->
@@ -2604,7 +2329,7 @@
 
             <!-- Flower center -->
             <circle cx="0" cy="0" r="8" fill="#ffeb3b" />
-            <circle cx="0" cy="0" r="4" fill="#ff8a65" />
+            <circle cx="0" cy="0" r="4" fill="#cfae90" />
 
             <!-- Detailed stamens -->
             <line
@@ -2612,7 +2337,7 @@
               y1="-2.5"
               x2="-5"
               y2="-7"
-              stroke="#ff8a65"
+              stroke="#cfae90"
               stroke-width="1"
             />
             <line
@@ -2620,7 +2345,7 @@
               y1="-2.5"
               x2="5"
               y2="-7"
-              stroke="#ff8a65"
+              stroke="#cfae90"
               stroke-width="1"
             />
             <line
@@ -2628,7 +2353,7 @@
               y1="2.5"
               x2="-5"
               y2="7"
-              stroke="#ff8a65"
+              stroke="#cfae90"
               stroke-width="1"
             />
             <line
@@ -2636,24 +2361,24 @@
               y1="2.5"
               x2="5"
               y2="7"
-              stroke="#ff8a65"
+              stroke="#cfae90"
               stroke-width="1"
             />
 
             <!-- Pollen dots -->
-            <circle cx="-5" cy="-7" r="1.2" fill="#ff8a65" />
-            <circle cx="5" cy="-7" r="1.2" fill="#ff8a65" />
-            <circle cx="-5" cy="7" r="1.2" fill="#ff8a65" />
-            <circle cx="5" cy="7" r="1.2" fill="#ff8a65" />
+            <circle cx="-5" cy="-7" r="1.2" fill="#cfae90" />
+            <circle cx="5" cy="-7" r="1.2" fill="#cfae90" />
+            <circle cx="-5" cy="7" r="1.2" fill="#cfae90" />
+            <circle cx="5" cy="7" r="1.2" fill="#cfae90" />
           </g>
         </g>
 
         <!-- Subtle decorative elements -->
         <g opacity="0.3" class="animate-element animate-fade delay-6">
-          <circle cx="80" cy="300" r="4" fill="#ffab91" />
-          <circle cx="120" cy="270" r="3" fill="#ffab91" />
-          <circle cx="520" cy="300" r="4" fill="#ffab91" />
-          <circle cx="480" cy="270" r="3" fill="#ffab91" />
+          <circle cx="80" cy="300" r="4" fill="#cfae90" />
+          <circle cx="120" cy="270" r="3" fill="#cfae90" />
+          <circle cx="520" cy="300" r="4" fill="#cfae90" />
+          <circle cx="480" cy="270" r="3" fill="#cfae90" />
           <circle cx="300" cy="100" r="5" fill="#bbdefb" />
           <circle cx="350" cy="130" r="4" fill="#bbdefb" />
           <circle cx="250" cy="130" r="4" fill="#bbdefb" />
@@ -2664,7 +2389,7 @@
           class="animate-path delay-7"
           d="M180,220 Q300,240 420,210"
           fill="none"
-          stroke="#ffab91"
+          stroke="#cfae90"
           stroke-width="3"
         />
 
@@ -2734,14 +2459,6 @@
             <div class="card">
               <div class="envelope-text">Vietnamese</br>
                 Teachers'</br> Day!</div>
-              <div class="heart"></div>
-            </div>
-            <div class="hearts">
-              <div class="one"></div>
-              <div class="two"></div>
-              <div class="three"></div>
-              <div class="four"></div>
-              <div class="five"></div>
             </div>
           </div>
           <div class="shadow"></div>
@@ -2754,15 +2471,7 @@
       <div class="boxLetter">
         <i class="fa-solid fa-xmark"></i>
         <div class="formLetter">
-          <div class="heartLetter">
-            <div class="heartLetterItem"></div>
-          </div>
-          <div class="heartLetter">
-            <div class="heartLetterItem"></div>
-          </div>
           <div class="wrapperLetter">
-            <span class="corner-heart corner-heart--tl"></span>
-            <span class="corner-heart corner-heart--br"></span>
             <div class="letterBadge">20 : 11</div>
             <div class="textLetter">
               <div class="letterRow">
@@ -2771,11 +2480,13 @@
                   <p class="contentLetter"></p>
                   <div class="letterFooter">
                     <!-- <div class="footerIcon"></div>
-                    <div class="footerNote">Th�n g?i t? nh�m BIT</div> -->
+                    <div class="footerNote">Th?n g?i t? nh?m BIT</div> -->
                   </div>
-                    <div class="next-icon-container" style="display: none;">
-                    <div class="next-icon" onclick="goNextPage()">🌷</div>
+                  <div class="next-icon-container" style="display: none;">
+                    <div class="next-icon" onclick="goNextPage()">??</div>
+                    <div class="next-text"></div>
                     <div class="footerNote">Thân gửi từ câu lạc bộ BIT</div>
+                  </div>
                 </div>
               </div>
               
@@ -2812,14 +2523,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 $(document).ready(function () {
-  // Hover phong b�
+  // Hover phong b?
   $('.valentines').mouseenter(function () {
     $('.card').stop().animate({ top: '-90px' }, 'slow');
   }).mouseleave(function () {
     $('.card').stop().animate({ top: 0 }, 'slow');
   });
 
-  // Click th? thu d? hi?n l?i ch�c
+  // Click th? thu d? hi?n l?i ch?c
   $('.card').click(function () {
     $(".wrapperLetterForm").fadeIn();
     document.body.classList.add('modal-open');
@@ -2832,7 +2543,7 @@ $(document).ready(function () {
   });
 });
 
-// H�m typing ti�u d?
+// H?m typing ti?u d?
 function textCharLetter() {
   if (indexText < textLetterH2.length) {
     textLetter.textContent += textLetterH2[indexText];
@@ -2858,7 +2569,7 @@ function funcTimeoutLetter() {
   timoutTextLetter = setInterval(() => { textCharLetter(); }, 20);
 }
 
-// H�m typing n?i dung
+// H?m typing n?i dung
 function textCharLetterContent() {
   if (indexTextContent < textLetterP.length) {
     textLetterContent.textContent += textLetterP[indexTextContent];
@@ -2867,7 +2578,7 @@ function textCharLetterContent() {
     clearInterval(timoutTextLetterContent);
     textLetterContent.classList.remove('typing');
     textLetterContent.classList.add('completed');
-    // HI?N N�T SAU KHI HO�N TH�NH TYPING - TH�M 2 GI�Y TR?
+    // HI?N N?T SAU KHI HO?N TH?NH TYPING - TH?M 2 GI?Y TR?
     setTimeout(showNextIcon, 2000);
   }
 }
@@ -2881,21 +2592,21 @@ function funcTimeoutLetterContent() {
   timoutTextLetterContent = setInterval(() => { textCharLetterContent(); }, 50);
 }
 
-// H�m hi?n th? n�t chuy?n trang
+// H?m hi?n th? n?t chuy?n trang
 function showNextIcon() {
   const nextIconContainer = document.querySelector('.next-icon-container');
   if (nextIconContainer) {
     nextIconContainer.style.display = 'flex';
-    // K�ch ho?t hi?u ?ng sau 1 frame
+    // K?ch ho?t hi?u ?ng sau 1 frame
     setTimeout(() => {
       nextIconContainer.classList.add('show');
     }, 10);
     
-    // Th�m hi?u ?ng ch� � sau 5 gi�y n?u ngu?i d�ng kh�ng click
+    // Th?m hi?u ?ng ch? ? sau 5 gi?y n?u ngu?i d?ng kh?ng click
     setTimeout(() => {
       if (!nextIconContainer.clicked) {
         nextIconContainer.classList.add('attention');
-        // Th�m hi?u ?ng nh?p nh�y m?nh hon
+        // Th?m hi?u ?ng nh?p nh?y m?nh hon
         const nextIcon = document.querySelector('.next-icon');
         nextIcon.style.animation = 'floatTulip 1s ease-in-out infinite, glow 0.8s ease-in-out infinite alternate, pulse 0.7s ease-in-out infinite, attentionPulse 2s ease-in-out infinite';
       }
@@ -2903,7 +2614,7 @@ function showNextIcon() {
   }
 }
 
-// Th�m hi?u ?ng ch� � v�o CSS
+// Th?m hi?u ?ng ch? ? v?o CSS
 const style = document.createElement('style');
 style.textContent = `
   @keyframes attentionPulse {
@@ -2923,22 +2634,22 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// C?p nh?t h�m goNextPage d? d�nh d?u d� click
+// C?p nh?t h?m goNextPage d? d?nh d?u d? click
 function goNextPage() {
   const nextIconContainer = document.querySelector('.next-icon-container');
   if (nextIconContainer) {
     nextIconContainer.clicked = true;
   }
   
-  // Th�m hi?u ?ng click tru?c khi chuy?n trang
+  // Th?m hi?u ?ng click tru?c khi chuy?n trang
   const nextIcon = document.querySelector('.next-icon');
   const nextText = document.querySelector('.next-text');
   
   // Hi?u ?ng click
   nextIcon.style.animation = 'none';
   nextIcon.style.transform = 'scale(0.8)';
-  nextText.textContent = '�ang chuy?n...';
-  nextText.style.color = '#ff1493';
+  nextText.textContent = '?ang chuy?n...';
+  nextText.style.color = '#6c89d9';
   
   setTimeout(() => {
     nextIcon.style.transform = 'scale(1.2)';
@@ -2946,7 +2657,7 @@ function goNextPage() {
   }, 150);
   
   setTimeout(() => {
-    // Luu tr?ng th�i nh?c tru?c khi chuy?n trang
+    // Luu tr?ng th?i nh?c tru?c khi chuy?n trang
     const backgroundMusic = document.getElementById('backgroundMusic');
     if (backgroundMusic) {
       localStorage.setItem('musicCurrentTime', backgroundMusic.currentTime);
@@ -2959,7 +2670,7 @@ function goNextPage() {
 }
 
 function goNextPage() {
-  // Luu tr?ng th�i nh?c tru?c khi chuy?n trang
+  // Luu tr?ng th?i nh?c tru?c khi chuy?n trang
   const backgroundMusic = document.getElementById('backgroundMusic');
   localStorage.setItem('musicCurrentTime', backgroundMusic.currentTime);
   localStorage.setItem('musicIsPlaying', !backgroundMusic.paused);
@@ -2967,46 +2678,55 @@ function goNextPage() {
   window.location.href = "vutru/index2.html";
 }
 
-      // Th�m nh?c n?n t? d?ng ch?y
+      // Th?m nh?c n?n t? d?ng ch?y
 document.addEventListener('DOMContentLoaded', function() {
   const backgroundMusic = document.getElementById('backgroundMusic');
   
-  // Ch�nh s�ch t? d?ng ph�t c?a tr�nh duy?t y�u c?u ngu?i d�ng tuong t�c tru?c
-  // N�n ch�ng ta s? b?t s? ki?n click d?u ti�n d? b?t d?u ph�t nh?c
+  // Ch?nh s?ch t? d?ng ph?t c?a tr?nh duy?t y?u c?u ngu?i d?ng tuong t?c tru?c
+  // N?n ch?ng ta s? b?t s? ki?n click d?u ti?n d? b?t d?u ph?t nh?c
   function startMusic() {
     if (backgroundMusic.paused) {
-      backgroundMusic.volume = 0.3; // �i?u ch?nh �m lu?ng (0.0 d?n 1.0)
+      backgroundMusic.volume = 0.3; // ?i?u ch?nh ?m lu?ng (0.0 d?n 1.0)
       backgroundMusic.play().catch(function(error) {
-        console.log('L?i ph�t nh?c:', error);
+        console.log('L?i ph?t nh?c:', error);
       });
       
-      // X�a s? ki?n sau khi click l?n d?u
+      // X?a s? ki?n sau khi click l?n d?u
       document.removeEventListener('click', startMusic);
       document.removeEventListener('touchstart', startMusic);
     }
   }
   
-  // Th�m s? ki?n cho l?n click d?u ti�n
+  // Th?m s? ki?n cho l?n click d?u ti?n
   document.addEventListener('click', startMusic);
   document.addEventListener('touchstart', startMusic); // Cho mobile
   
-  // Ho?c c� th? th? ph�t t? d?ng (c� th? b? ch?n b?i tr�nh duy?t)
+  // Ho?c c? th? th? ph?t t? d?ng (c? th? b? ch?n b?i tr?nh duy?t)
   setTimeout(function() {
     backgroundMusic.volume = 0.3;
     backgroundMusic.play().catch(function(error) {
-      console.log('T? d?ng ph�t b? ch?n, ch? ngu?i d�ng tuong t�c...');
+      console.log('T? d?ng ph?t b? ch?n, ch? ngu?i d?ng tuong t?c...');
     });
   }, 1000);
 });
     </script>
-    <!-- Th�m nh?c n?n -->
+    <!-- Th?m nh?c n?n -->
     <audio id="backgroundMusic" loop>
       <source src="music/music1.mp3" type="audio/mpeg">
       <source src="music/music1.mp3" type="audio/ogg">
-      Tr�nh duy?t c?a b?n kh�ng h? tr? th? audio.
+      Tr?nh duy?t c?a b?n kh?ng h? tr? th? audio.
     </audio>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
 
 
 

@@ -3,6 +3,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  filter: hue-rotate(-50deg) saturate(0.7);
 }
 
 * {
@@ -152,7 +153,7 @@ body.portrait #landscape-warning {
   padding: 1rem 2.5rem;
   border-radius: 2rem;
   border: none;
-  background: linear-gradient(90deg, #ffb6e6, #a259c7, #00eaff);
+  background: linear-gradient(90deg, #8cc2f2, #a259c7, #00eaff);
   color: #fff;
   box-shadow: 0 0 24px #fff6, 0 0 8px #00eaff;
   cursor: pointer;
@@ -160,7 +161,7 @@ body.portrait #landscape-warning {
 }
 
 #start-btn:hover {
-  background: linear-gradient(90deg, #00eaff, #a259c7, #ffb6e6);
+  background: linear-gradient(90deg, #00eaff, #a259c7, #8cc2f2);
 }
 
 #dark-overlay {
@@ -304,7 +305,7 @@ body.intro-started #info {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 0.85rem;
-  color: #ffe6ff;
+  color: #e9f2ff;
 }
 
 #info small {
@@ -326,3 +327,6 @@ body.intro-started #info {
     transform: translate(-50%, 0);
   }
 }
+
+
+
