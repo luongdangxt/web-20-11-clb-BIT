@@ -35,7 +35,7 @@ controls.rotateSpeed = 0.3;
 controls.update();
 
 // ---- HÀM TIỆN ÍCH TẠO HIỆU ỨNG GLOW ----
-function createGlowMaterial(color, size = 32, opacity = 0.01) {
+function createGlowMaterial(color, size = 50, opacity = 0.05) {
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = size;
   const context = canvas.getContext("2d");
