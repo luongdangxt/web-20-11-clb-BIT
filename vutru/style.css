@@ -16,7 +16,7 @@ body {
   width: 100vw;
   height: 100vh;
   /* hoặc: height: calc(var(--vh, 1vh) * 100); */
-  background: radial-gradient(circle at center, #000010 0%, #000000 100%);
+  background: radial-gradient(circle at 45% 40%, #2d3758 0%, #1a2240 65%, #0f162c 100%);
   position: fixed;
   top: 0;
   left: 0;

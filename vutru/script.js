@@ -35,7 +35,7 @@ controls.rotateSpeed = 0.3;
 controls.update();
 
 // ---- HÀM TIỆN ÍCH TẠO HIỆU ỨNG GLOW ----
-function createGlowMaterial(color, size = 128, opacity = 0.55) {
+function createGlowMaterial(color, size = 128, opacity = 0.12) {
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = size;
   const context = canvas.getContext("2d");
@@ -66,14 +66,14 @@ function createGlowMaterial(color, size = 128, opacity = 0.55) {
 // ---- TẠO CÁC THÀNH PHẦN CỦA SCENE ----
 
 // Glow trung tâm
-const centralGlow = createGlowMaterial("rgba(255,255,255,0.8)", 156, 0.25);
-centralGlow.scale.set(8, 8, 1);
+const centralGlow = createGlowMaterial("rgba(255,255,255,0.28)", 156, 0.05);
+centralGlow.scale.set(4, 4, 1);
 scene.add(centralGlow);
 
 // Các đám mây tinh vân (Nebula) ngẫu nhiên
 for (let i = 0; i < 15; i++) {
   const hue = Math.random() * 360;
-  const color = `hsla(${hue}, 80%, 50%, 0.6)`;
+  const color = `hsla(${hue}, 80%, 50%, 0.25)`;
   const nebula = createGlowMaterial(color, 256);
   nebula.scale.set(100, 100, 1);
   nebula.position.set(
@@ -113,10 +113,10 @@ const heartImages = [
 ];
 
 const glowPalette = [
-  "rgba(255, 136, 214, 0.55)",
-  "rgba(122, 246, 255, 0.5)",
-  "rgba(255, 214, 126, 0.55)",
-  "rgba(197, 148, 255, 0.55)",
+  "rgba(255, 136, 214, 0.08)",
+  "rgba(122, 246, 255, 0.08)",
+  "rgba(255, 214, 126, 0.08)",
+  "rgba(197, 148, 255, 0.08)",
 ];
 
 const textureLoader = new THREE.TextureLoader();
@@ -308,8 +308,8 @@ function createNeonTexture(image, size) {
     size / 2,
     size * 0.85
   );
-  glowGradient.addColorStop(0, "rgba(255,255,255,0.35)");
-  glowGradient.addColorStop(0.45, "rgba(255,120,200,0.25)");
+  glowGradient.addColorStop(0, "rgba(255,255,255,0.08)");
+  glowGradient.addColorStop(0.45, "rgba(255,120,200,0.04)");
   glowGradient.addColorStop(1, "rgba(6,10,30,0)");
   ctx.fillStyle = glowGradient;
   ctx.fillRect(0, 0, size, size);
@@ -322,18 +322,18 @@ function createNeonTexture(image, size) {
     offsetX + drawWidth,
     offsetY + drawHeight
   );
-  panelGradient.addColorStop(0, "rgba(18, 15, 38, 0.95)");
-  panelGradient.addColorStop(1, "rgba(70, 18, 92, 0.9)");
+  panelGradient.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+  panelGradient.addColorStop(1, "rgba(236, 242, 255, 0.9)");
   ctx.fillStyle = panelGradient;
-  ctx.shadowColor = "rgba(255,110,200,0.55)";
-  ctx.shadowBlur = size * 0.08;
+  ctx.shadowColor = "rgba(0,0,0,0.08)";
+  ctx.shadowBlur = size * 0.01;
   ctx.fill();
   ctx.restore();
 
   ctx.save();
   drawRoundedRect();
   ctx.clip();
-  ctx.globalAlpha = 0.92;
+  ctx.globalAlpha = 1;
   ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
   ctx.restore();
 
@@ -351,9 +351,9 @@ function createNeonTexture(image, size) {
   ctx.lineWidth = size * 0.03;
   ctx.strokeStyle = borderGradient;
   ctx.stroke();
-  ctx.globalAlpha = 0.45;
+  ctx.globalAlpha = 0.25;
   ctx.lineWidth = size * 0.008;
-  ctx.strokeStyle = "rgba(255,255,255,0.85)";
+  ctx.strokeStyle = "rgba(255,255,255,0.7)";
   ctx.stroke();
   ctx.restore();
 
@@ -516,13 +516,13 @@ for (let group = 0; group < numGroups; group++) {
     pointsObject.position.set(cx, cy, cz); // Dat lai ve vi tri ban dau trong scene
 
     const glowColor = glowPalette[group % glowPalette.length];
-    const glowSprite = createGlowMaterial(glowColor, 256, 0.3);
-    const baseGlowScale = 20 + Math.random() * 8;
+    const glowSprite = createGlowMaterial(glowColor, 256, 0.06);
+    const baseGlowScale = 10 + Math.random() * 3;
     glowSprite.scale.set(baseGlowScale, baseGlowScale, 1);
     glowSprite.position.set(cx, cy, cz);
     glowSprite.material.depthWrite = false;
     glowSprite.material.depthTest = false;
-    glowSprite.material.opacity = 0.45;
+    glowSprite.material.opacity = 0.06;
     glowSprite.userData.baseScale = baseGlowScale;
     glowSprite.renderOrder = -5;
     scene.add(glowSprite);
@@ -540,7 +540,7 @@ for (let group = 0; group < numGroups; group++) {
 }
 
 // ---- ÁNH SÁNG MÔI TRƯỜNG ----
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
 scene.add(ambientLight);
 
 // ---- TẠO NỀN SAO (STARFIELD) ----
@@ -618,7 +618,7 @@ function createShootingStar() {
   );
   const atmosphereMaterial = new THREE.ShaderMaterial({
     uniforms: {
-      glowColor: { value: new THREE.Color(0xe0b3ff) },
+      glowColor: { value: new THREE.Color(0xc6a1ff) },
     },
     vertexShader: `
         varying vec3 vNormal;
@@ -631,7 +631,8 @@ function createShootingStar() {
         varying vec3 vNormal;
         uniform vec3 glowColor;
         void main() {
-            float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+            float rim = 0.35 - dot(vNormal, vec3(0.0, 0.0, 1.0));
+            float intensity = max(0.0, pow(rim, 2.0) * 0.45);
             gl_FragColor = vec4(glowColor, 1.0) * intensity;
         }
     `,
